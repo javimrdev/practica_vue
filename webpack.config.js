@@ -24,9 +24,19 @@ module.exports = {
                 ]
             },
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 loader: 'ts-loader',
                 options: { appendTsSuffixTo: [/\.vue$/] }
+            },
+            {
+                test: /\.m?js/,
+                type: "javascript/auto",
+            },
+            {
+                test: /\.m?js/,
+                resolve: {
+                    fullySpecified: false,
+                },
             }
         ],
     },
@@ -41,5 +51,8 @@ module.exports = {
             filename: 'index.html',
             template: 'index.html',
         })
-    ]
+    ],
+    devServer: {
+        liveReload: true
+    }
 };

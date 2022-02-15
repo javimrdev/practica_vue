@@ -1,15 +1,16 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import TheHeader from '../components/TheHeader.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-const router = createRouter({
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('../pages/employee-list.vue')
+  }
+]
+
+export const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: TheHeader
-    }
-  ]
+  routes
 })
 
 export default router
