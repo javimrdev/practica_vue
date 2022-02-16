@@ -4,7 +4,6 @@
             <el-menu-item index="1">
                 <router-link to="/">Employee list</router-link>
             </el-menu-item>
-            <el-menu-item index="2">Character list</el-menu-item>
         </el-menu>
     </el-header>
 </template>

@@ -9,6 +9,30 @@
         "moduleResolution": "node",
         "types": [
             "element-plus/global"
-        ]
+        ],
+        "baseUrl": "./src/",
+        "paths": {
+            "pods": [
+                "pods"
+            ],
+            "commons": [
+                "commons"
+            ],
+            "config": [
+                "config"
+            ],
+            "core": [
+                "core"
+            ],
+            "router": [
+                "router"
+            ],
+            "scenes": [
+                "scenes"
+            ],
+            "layout": [
+                "layout"
+            ]
+        }
     }
 }

@@ -43,6 +43,13 @@ module.exports = {
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.vue'],
+        alias: {
+            components: path.resolve(__dirname, 'src/components/'),
+            pages: path.resolve(__dirname, 'src/pages/'),
+            services: path.resolve(__dirname, 'src/services/'),
+            types: path.resolve(__dirname, 'src/types/'),
+            router: path.resolve(__dirname, 'src/router/'),
+        },
     },
     plugins: [
         // make sure to include the plugin!

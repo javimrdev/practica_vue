@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import TheHeader from "./TheHeader.vue";
-import TheMain from './TheMain.vue'
+import TheHeader from "components/TheHeader.vue";
+import TheMain from 'components/TheMain.vue'
 </script>
 
 <style>
