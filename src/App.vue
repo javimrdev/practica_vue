@@ -1,12 +1,23 @@
 <template>
   <TheLayout>
-    <RouterView />
+    <Suspense>
+      <RouterView />
+    </Suspense>
   </TheLayout>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { RouterView } from 'vue-router';
 import TheLayout from './components/TheLayout.vue';
+
+
+export default defineComponent({
+  components: {
+    TheLayout,
+    RouterView
+  }
+})
 </script>
 
 <style>

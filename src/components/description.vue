@@ -3,27 +3,30 @@
         <el-descriptions-item label="Login">{{ employee.login }}</el-descriptions-item>
         <el-descriptions-item label="Id">{{ employee.id }}</el-descriptions-item>
         <el-descriptions-item label="Avatar" :span="2">
-            <Avatar :avatarUrl="employee.avatar_url" />
+            <el-avatar :size="50" :src="employee.avatar_url"></el-avatar>
         </el-descriptions-item>
         <el-descriptions-item label="URL">{{ employee.url }}</el-descriptions-item>
     </el-descriptions>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { getEmployeeByLogin } from 'services/EmployeeService';
 import { Employee } from 'types';
-import Avatar from './avatar.vue';
-import { ElLoading } from 'element-plus'
-import { watch } from 'vue';
+import { defineComponent, ref, Ref } from 'vue';
 
-interface Props {
-    employee: Employee
-}
-
-const { employee } = defineProps<Props>();
-const loadingInstance = ElLoading.service({ fullscreen: true })
-
-watch(employee, (employee) => {
-    console.log('employee', employee)
-    if (employee) loadingInstance.close();
+export default defineComponent({
+    props: {
+        login: {
+            type: String,
+            required: true
+        }
+    },
+    async setup(props) {
+        const employee: Ref<Employee> = ref<Employee>(null);
+        employee.value = await getEmployeeByLogin.get(props.login);
+        return {
+            employee
+        }
+    }
 })
 </script>

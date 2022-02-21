@@ -8,31 +8,72 @@
         </el-form-item>
     </el-form>
 
-    <Table :columns="columns" :list="list" />
+    <Suspense>
+        <template #default>
+            <Table :data="data">
+                <el-table-column label="Avatar" align="center">
+                    <template #default="scope">
+                        <el-avatar :size="50" :src="scope.row.avatar_url"></el-avatar>
+                    </template>
+                </el-table-column>
+                <el-table-column label="Detail" align="center">
+                    <template #default="scope">
+                        <el-button
+                            type="text"
+                            size="small"
+                            @click="goToDetail(scope.row.login)"
+                        >Detail</el-button>
+                    </template>
+                </el-table-column>
+            </Table>
+        </template>
+    </Suspense>
 </template>
 
-<script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+<script lang="ts">
+import { defineComponent, reactive, Ref, ref, ToRefs, toRefs } from 'vue';
 import { Employee } from 'types';
 import { getEmployeesByCompany } from 'services/EmployeeService';
-import Table from 'components/table.vue';
+import { router } from 'router';
+import Table from 'components/table.vue'
+
 
 interface Form {
     company: string;
 }
-
-const list = ref<Employee[]>([]);
-const columns = ref<string[]>(['login', 'id']);
-const form = ref<Form>({
-    company: 'Lemoncode'
-});
-
-const getList = async () => {
-    list.value = await getEmployeesByCompany.get(form.value.company);
+interface Data {
+    columns: string[];
+    list: any[];
 }
 
-onMounted(() => {
-    getList();
+export default defineComponent({
+    components: {
+        Table
+    },
+    async setup() {
+        const form = reactive<Form>({
+            company: 'Lemoncode'
+        });
+        const loading: Ref<boolean> = ref<boolean>(true);
+        const data: Data = reactive({
+            columns: ['login', 'id']
+            , list: []
+        });
+
+        data.list = await getEmployeesByCompany.get(form.company);
+
+        const goToDetail = (login: string) => {
+            router.push(`/employee-detail/${login}`);
+        }
+
+        const getList = async () => {
+            data.list = await getEmployeesByCompany.get(form.company);
+        }
+
+        return {
+            data, form, goToDetail, getList
+        }
+    }
 })
 </script>
 
