@@ -24,7 +24,7 @@ export default defineComponent({
     },
     async setup(props) {
         const data: Data = reactive(props.data)
-        console.log(data)
+        console.log('data', data)
 
         return {
             data
