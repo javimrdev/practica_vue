@@ -31,11 +31,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, Ref, ref, ToRefs, toRefs } from 'vue';
-import { Employee } from 'types';
+import { computed, defineComponent, reactive } from 'vue';
 import { getEmployeesByCompany } from 'services/EmployeeService';
 import { router } from 'router';
 import Table from 'components/table.vue'
+import { useStore } from 'vuex'
+
 
 
 interface Form {
@@ -51,11 +52,16 @@ export default defineComponent({
         Table
     },
     async setup() {
+        const store = useStore();
+
+        const company = computed(() => store.getters['EmployeeModule/company']);
+        if (!company.value) store.dispatch('EmployeeModule/SET_COMPANY', 'Lemoncode');
+
         const form = reactive<Form>({
-            company: 'Lemoncode'
+            company: company.value
         });
-        const loading: Ref<boolean> = ref<boolean>(true);
-        const data: Data = reactive({
+
+        const data: Data = reactive<Data>({
             columns: ['login', 'id']
             , list: []
         });
@@ -68,6 +74,7 @@ export default defineComponent({
 
         const getList = async () => {
             data.list = await getEmployeesByCompany.get(form.company);
+            store.dispatch('EmployeeModule/SET_COMPANY', form.company);
         }
 
         return {
