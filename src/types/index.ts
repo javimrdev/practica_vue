@@ -1,1 +1,2 @@
-export * from './Employee'
+export * from 'types/Employee'
+export * from 'types/SearcherForm'

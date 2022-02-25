@@ -1,23 +1,20 @@
 <template>
-  <TheLayout>
-    <Suspense>
-      <RouterView />
-    </Suspense>
-  </TheLayout>
+  <TheLayoutComponent>
+    <RouterView />
+  </TheLayoutComponent>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { RouterView } from 'vue-router';
-import TheLayout from './components/TheLayout.vue';
-
+import { defineComponent } from "vue";
+import { RouterView } from "vue-router";
+import TheLayoutComponent from "./components/TheLayout.vue";
 
 export default defineComponent({
   components: {
-    TheLayout,
-    RouterView
-  }
-})
+    TheLayoutComponent,
+    RouterView,
+  },
+});
 </script>
 
 <style>

@@ -4,34 +4,28 @@
         "noImplicitAny": false,
         "module": "esnext",
         "target": "es5",
-        "jsx": "react",
         "allowJs": true,
         "moduleResolution": "node",
         "types": [
             "element-plus/global"
         ],
         "baseUrl": "./src/",
+        "skipLibCheck": true,
         "paths": {
-            "pods": [
-                "pods"
+            "components": [
+                "components"
             ],
-            "commons": [
-                "commons"
+            "pages": [
+                "pages"
             ],
             "config": [
                 "config"
             ],
-            "core": [
-                "core"
+            "types": [
+                "types"
             ],
-            "router": [
-                "router"
-            ],
-            "scenes": [
-                "scenes"
-            ],
-            "layout": [
-                "layout"
+            "store": [
+                "store"
             ]
         }
     }
