@@ -1,26 +1,19 @@
 <template>
-  <Suspense>
-    <div>
-      <SearcherComponent :form="form" @set-value="setValue" />
-      <TableComponent :data="data">
-        <el-table-column label="Avatar" align="center">
-          <template #default="scope">
-            <el-avatar :size="50" :src="scope.row.avatar_url"></el-avatar>
-          </template>
-        </el-table-column>
-        <el-table-column label="Detail" align="center">
-          <template #default="scope">
-            <el-button
-              type="text"
-              size="small"
-              @click="goToDetail(scope.row.login)"
-              >Detail</el-button
-            >
-          </template>
-        </el-table-column>
-      </TableComponent>
-    </div>
-  </Suspense>
+  <SearcherComponent :form="form" @set-value="setValue" />
+  <TableComponent :data="data">
+    <el-table-column label="Avatar" align="center">
+      <template #default="scope">
+        <el-avatar :size="50" :src="scope.row.avatar_url"></el-avatar>
+      </template>
+    </el-table-column>
+    <el-table-column label="Detail" align="center">
+      <template #default="scope">
+        <el-button type="text" size="small" @click="goToDetail(scope.row.login)"
+          >Detail</el-button
+        >
+      </template>
+    </el-table-column>
+  </TableComponent>
 </template>
 
 <script lang="ts">

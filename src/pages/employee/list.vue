@@ -3,6 +3,7 @@
     <template #default>
       <EmployeeListComponent />
     </template>
+    <template #fallback><span>loading</span></template>
   </Suspense>
 </template>
 
